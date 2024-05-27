@@ -1,0 +1,17 @@
+{
+  "name": "list-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-backend": "npm --prefix ./Backend start",
+    "start-frontend": "npm --prefix ./Frontend start",
+    "start": "concurrently \"npm --prefix ./Backend start\" \"npm --prefix ./Frontend run dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erik Persson",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
