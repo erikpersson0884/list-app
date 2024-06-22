@@ -1,35 +1,75 @@
-import React from 'react';
-
+import React, { useState, useRef } from 'react';
+import { ListProps, Item } from '../../types/types';
+import axios from 'axios';
 
 import './List.css';
 
-
-
-interface ListProps {
-    list: {
-        name: string;
-        id: string;
-        items: any[];
-    };
-}
-
 function List({ list }: ListProps) {
+    const [items, setItems] = useState<Item[]>(list.items);
+    const [isAddVisible, setAddVisible] = useState(true);
+    const [itemName, setItemName] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null); // Create a ref for the input element
 
-    if (!list) {
-        return <h2>Loading...</h2>;
+    const addItem = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (itemName.trim() === '') {
+            return; // Return early if the input is empty or contains only whitespace
+        }
+        axios.post('/api/lists/addItem', { itemName: itemName, listId: list.id })
+            .then((response) => {
+                if (response.status === 200) {
+                    const newItem = response.data;
+                    setItems([...items, newItem]);
+                    setItemName(''); // Clear the input after adding
+                    inputRef.current?.focus(); // Set focus back to the input
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
     }
 
-    if (list.items.length === 0) {
-        return <h2>List not found</h2>;
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setItemName(e.target.value);
+    }
+
+    const removeItem = (itemToRemove: Item) => {
+
+        axios.post('/api/lists/removeItem', { item: itemToRemove, listId: list.id})
+            .then((response) => {
+                if (response.status === 200) {
+                    setItems(items.filter((item) => itemToRemove.id !== item.id));
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
         <div>
-            {/* <h2>{`Displaying ${list.name}`}</h2> */}
+            {isAddVisible && (
+                <form className='addForm' onSubmit={addItem}>
+                    <input 
+                        type='text' 
+                        placeholder='Add item...' 
+                        value={itemName}
+                        onChange={handleInputChange}
+                        ref={inputRef} // Assign the ref to the input element
+                    />
+                    <button type="submit">Add</button>
+                </form>
+            )}
+
             <ul className="list">
-                {list.items.map((item, index) => (
-                    <li key={index}>{item.name}</li>
+                {items.map((item, index) => (
+                    <li key={index}>
+                        <p className='listItemName'>{item.name}</p>
+                        <button className='removeItemButton' onClick={() => removeItem(item)}></button>
+                    </li>
                 ))}
+
+                <li className='addItemButton'>
+                    <button onClick={() => { setAddVisible(!isAddVisible) }}>ADD ITEM</button>
+                </li>
             </ul>
         </div>
     );

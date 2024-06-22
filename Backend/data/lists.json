@@ -1,38 +1,35 @@
 [
-    {
-        "name": "shoppingList",
-        "id": "29879fdos8fj",
-        "items": [
-            {
-                "name": "milk",
-                "id": "2j3f9j3f9j",
-                "quantity": 1,
-                "completed": false
-            },
-            {
-                "name": "bread",
-                "id": "2j3f9j3f9j",
-                "quantity": 1,
-                "completed": true
-            }
-        ]
-    },
-    {
-        "name": "todoList",
-        "id": "24jfdos8fj",
-        "items": [
-            {
-                "name": "clean the house",
-                "id": "ja9sd8fn",
-                "completed": false,
-                "quantity": 1
-            },
-            {
-                "name": "do the laundry",
-                "id": "2j3f9j3f9j",
-                "completed": false,
-                "quantity": 1
-            }
-        ]
-    }
+  {
+    "name": "shoppingList",
+    "id": "29879fdos8fj",
+    "items": [
+      {
+        "name": "milk",
+        "id": "2j3f9j3f9j",
+        "quantity": 1,
+        "completed": false
+      },
+      {
+        "name": "bread",
+        "id": "2j3f9j3f9j",
+        "quantity": 1,
+        "completed": true
+      }
+    ]
+  },
+  {
+    "id": "1718922649641",
+    "name": "45",
+    "items": []
+  },
+  {
+    "id": "1719094384967",
+    "name": "coola",
+    "items": []
+  },
+  {
+    "id": "1719094528709",
+    "name": "fina blommor",
+    "items": []
+  }
 ]

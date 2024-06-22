@@ -8,6 +8,7 @@ import ListMenu from './Components/ListMenu/ListMenu'
 import List from './Components/List/List'
 import Header from './Components/Header/Header'
 
+import ManageList from './Components/ManageList/ManageList';
 
 
 function App() {
@@ -29,7 +30,6 @@ function App() {
                 <Route path="/" element={<ListMenu />} />
 
                 {lists.map((list) => (
-                    console.log(list),
                     <Route
                         key={list.name}
                         path={`/lists/${list.name}`}
@@ -37,6 +37,7 @@ function App() {
                     />
                 ))}
             </Routes>
+
         </BrowserRouter>
       );
   }

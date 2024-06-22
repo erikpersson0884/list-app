@@ -3,18 +3,19 @@ import React from 'react';
 import './Header.css';
 import { Link, Route, Routes, BrowserRouter } from 'react-router-dom';
 
+
 interface HeaderProps {
     title: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
     return (
-        <header>
+        <header className='pageHeader'>
             <Routes>
                 <Route path="/lists/*" element={
                     <button>
                         <Link to="/">
-                            <img src="images/icons/back.svg" alt="Back icon" />
+                            <img src="/images/icons/back.svg" alt="Back icon" />
                         </Link>
                     </button>
                 } /> 

@@ -1,6 +1,6 @@
 
 
-header {
+.pageHeader {
     background: #bbb;
 
     display: flex;
@@ -12,12 +12,12 @@ header {
     height: 8rem;
 }
 
-header button {
+.pageHeader button {
     width: min-content;
     height: min-content;
 }
 
-header h1 {
+.pageHeader h1 {
     width: min-content;
     height: min-content;
 }

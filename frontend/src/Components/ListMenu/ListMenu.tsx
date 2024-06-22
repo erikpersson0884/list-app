@@ -1,19 +1,18 @@
 import React from 'react';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import ListMenuItem from './ListMenuItem';
+import { ListsProps, List } from '../../types/types';
+
 
 import './ListMenu.css';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import AddList from './AddList';
 
 
-interface ListMenuProps {
-    name: string;
-    id: string;
-    items: any[];
-}
 
-const ListMenu: React.FC<ListMenuProps> = (): React.ReactNode => {
-    const [lists, setLists] = useState<ListMenuProps[]>([]);
+const ListMenu = () =>{
+    const [lists, setLists] = useState<List[]>([]);
 
     useEffect(() => {
         fetch(`/api/lists/getAllLists`)
@@ -32,17 +31,47 @@ const ListMenu: React.FC<ListMenuProps> = (): React.ReactNode => {
     }, []); // Add an empty dependency array to useEffect to ensure it only runs once
 
 
-    
+
+
+    const removeList = (listId: string) => {
+        const newLists = lists.filter((l) => l.id !== listId);
+        axios.post(`/api/lists/removeList`, { listId: listId })
+            .then(() => {
+                setLists(newLists);
+            });
+    }
+
+
+
+    const [isAddVisible, setAddVisible] = useState(false);
+    const closeAddList = () => {
+        setAddVisible(false);
+    }
+
+    const openAddList = () => {
+        setAddVisible(true);
+    }
+
+    const handleAddList = (listName: String) => {
+        axios.post(`/api/lists/addList`, { listName: listName })
+            .then((response) => {
+                setLists(response.data);
+            });
+    }
+
     return (
         <ul className='listMenu'>
             {lists.map((list: any) => (
-                <li key={list.id}>
-                    <Link to={`/lists/${list.name}`}>
-                        <p>{list.name} </p>
-                        <p>{list.items.length} items</p>
-                    </Link>
-                </li>
+                <ListMenuItem list={list} key={list.id} removeList={removeList} />
             ))}
+
+            <li className='addList' onClick={openAddList} key={"addList"}>
+                Add  List +
+            </li>
+
+            {isAddVisible && (
+                <AddList onClose={closeAddList} handleAddList={handleAddList} key={"AddListDiv"}/>
+            )}
         </ul>
     );
 };

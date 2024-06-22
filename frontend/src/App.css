@@ -7,3 +7,16 @@
 * {
     margin: 0;
 }
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-ul-formatting {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
