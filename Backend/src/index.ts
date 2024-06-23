@@ -17,5 +17,5 @@ app.use('/lists', listRouter);
 
 
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Backend-server is running at http://localhost:${port}`);
 });

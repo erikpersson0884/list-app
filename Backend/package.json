@@ -16,6 +16,7 @@
     "express": "^4.19.2"
   },
   "scripts": {
+    "dev": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "serve": "node dist/index.js",
