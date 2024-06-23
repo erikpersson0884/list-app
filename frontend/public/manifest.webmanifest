@@ -1,0 +1,22 @@
+{
+    "name": "List App",
+    "short_name": "List",
+    "description": "An app to create and use different lists",
+    "icons": [
+      {
+        "src": "/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#1b4121",
+    "background_color": "#ffffff"
+  }
+  
