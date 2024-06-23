@@ -24,15 +24,15 @@ function ListMenuItem({ list, removeList }: ListMenuItemProps) {
         setManageListVisible(false);
     };
 
-    const completedItems = list.items.filter(item => item.completed);
-    const completedPercentage = (completedItems.length / list.items.length) * 100;
+    const numberOfCompletedItems = list.items.filter(item => item.completed).length;
+    const completedPercentage = (numberOfCompletedItems / list.items.length) * 100;
 
     return (
         <>
             <Link className="listMenuItem" to={`/lists/${list.name}`}>
                 <div className='listInfo'>
                     <p className='listName'>{list.name} </p>
-                    <p>{list.items.length} items</p>
+                    <p>{numberOfCompletedItems} / {list.items.length}</p>
 
                     <button onClick={handleManageList}>
                         <img src="/images/icons/edit.svg" alt="Manage List" />

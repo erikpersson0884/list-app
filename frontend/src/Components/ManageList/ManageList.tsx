@@ -23,12 +23,12 @@ const ManageList = ({list, onClose, activeList, removeList}: ManageListProps) =>
 
     return (
         <div className='manageList'>
-            <header>
-                <h2 className='manageListTitle'>Manage List</h2>
-                <button className='closeButton' onClick={onClose}>
-                    <img src='/images/icons/close.svg' alt='Close' />
-                </button>
-            </header>
+            <button className='closeButton' onClick={onClose}>
+                <img src='/images/icons/close.svg' alt='Close' />
+            </button>
+
+            <h2 className='manageListTitle'>Manage List</h2>
+
             <ul className='no-ul-formatting'>
                 {options.map((option) => (
                     <li key={option.name} onClick={option.action}>

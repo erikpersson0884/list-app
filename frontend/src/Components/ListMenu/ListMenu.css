@@ -16,7 +16,7 @@
 }
 
 
-.listMenu .listInfo, .addList {
+.listMenu .listInfo, .addList {    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,7 +24,10 @@
     gap: 2rem;
 
     cursor: pointer;    
+}
 
+.listMenu .addList {
+    background: var(--contrastColor);
 }
 
 .listMenuItem, .addList {
@@ -40,6 +43,9 @@
 
 .listMenu .listName {
     width: 20%;
+
+    text-transform: capitalize;
+
     flex-grow: 1;
 }
 
@@ -57,7 +63,7 @@
 }
 
 .completedPercentageDiv {
-    background: #00126b;
+    background: var(--contrastColor);
 
     width: 0%;
     height: 100%;

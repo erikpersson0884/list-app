@@ -13,8 +13,17 @@
 
 .manageList h2 {
     color: white;
+
     text-align: center;
+    text-decoration: underline;
+
     margin-top: 20px;
+}
+
+.manageList line {
+    width: 50%;
+    background: #fff;
+    margin-top: .2rem;
 }
 
 .manageList .closeButton {
@@ -36,10 +45,11 @@
     gap: 1rem;
 
     width: 100%;
+    margin-top: 1.5rem;
 }
 
 .manageList li {
-    background: purple;
+    background: rgb(31, 31, 31);
 
     font-size: 1.6rem;
     font-weight: 500;
@@ -49,8 +59,9 @@
     align-items: center;
     gap: 1rem;
 
-    width: 80%;
-    padding: 1rem 0;
+    width: 50%;
+    padding: 1rem;
+    border-radius: .5rem;
 }
 
 .manageList li img {

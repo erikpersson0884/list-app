@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 
     position: absolute;
     top: 50%;
@@ -16,7 +16,8 @@
     transform: translate(-50%, -50%);
 
 
-    width: min-content;
+    width: 40%;
+    min-width: min-content;
     padding: 1rem;
     border-radius: .5rem;
     outline: #ffffff .1rem solid;
@@ -27,6 +28,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 2rem;
 
     width: 100%;
 }
@@ -35,15 +37,21 @@
     background: inherit;
     color: #e9e50b;
 
+    font-size: 2rem;
+
     border: none;
     outline: #00a52c 1px solid;
     border-radius: .2rem;
     padding: .5rem;
+    width: 100%;
 }
 
 .listInputDiv button {
     background: inherit;
     color: #00a52c;
+
+    font-size: 1.5rem;
+    white-space: nowrap;
 
     border: none;
     outline: #00a52c 1px solid;

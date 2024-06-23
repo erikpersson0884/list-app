@@ -23,12 +23,12 @@
       {
         "name": "potatoe",
         "id": "1719148749924_8zwgma",
-        "completed": true
+        "completed": false
       },
       {
         "name": "orange",
         "id": "1719148751032_1ecil8",
-        "completed": true
+        "completed": false
       }
     ]
   },

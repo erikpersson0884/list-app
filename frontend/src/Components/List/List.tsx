@@ -33,7 +33,6 @@ function List({ list }: ListProps) {
     }
 
     const removeItem = (itemToRemove: Item) => {
-
         axios.post('/api/lists/removeItem', { item: itemToRemove, listId: list.id})
             .then((response) => {
                 if (response.status === 200) {
@@ -44,9 +43,7 @@ function List({ list }: ListProps) {
             });
     }
 
-    const toggleCompleted = (item: Item) => {
-        console.log(item);
-        
+    const toggleCompleted = (item: Item) => {        
         axios.post('/api/lists/toggleCompleted', { item: item, listId: list.id })
             .then((response) => {
                 if (response.status === 200) {
@@ -69,6 +66,10 @@ function List({ list }: ListProps) {
         <div>
             {isAddVisible && (
                 <form className='addForm' onSubmit={addItem}>
+                    <button className='closeButton noButtonFormatting' onClick={() => { setAddVisible(!isAddVisible) }}>
+                        <img src="/images/icons/back.svg" alt="Close icon" />
+                    </button>
+
                     <input 
                         type='text' 
                         placeholder='Add item...' 
@@ -76,27 +77,28 @@ function List({ list }: ListProps) {
                         onChange={handleInputChange}
                         ref={inputRef} // Assign the ref to the input element
                     />
-                    <button type="submit">Add</button>
+                    <button className="addItemButton" type="submit">Add</button>
                 </form>
             )}
 
             <ul className="list">
                 {items.map((item, index) => (
                     <li key={index}>
-                        <button className='completeItemButton' onClick={() => {toggleCompleted(item)}}>
+                        <button className='completeItemButton noButtonFormatting' onClick={() => {toggleCompleted(item)}}>
                             <img src={item.completed ? "/images/icons/checked.svg" : "/images/icons/unchecked.svg"} alt="Complete List" />
                         </button>
 
                         <p className='listItemName'>{item.name}</p>
-                        <button className='removeItemButton' onClick={() => removeItem(item)}>
+                        <button className='removeItemButton noButtonFormatting' onClick={() => removeItem(item)}>
                             <img src="/images/icons/remove.svg" alt="Remove icon" />
                         </button>
                     </li>
                 ))}
             </ul>
-
-            <button className="noButtonFormatting addItemButton" onClick={() => { setAddVisible(!isAddVisible) }}>+ Add</button>
-
+            
+            {!isAddVisible && (
+                <button className="noButtonFormatting openAddItemButton" onClick={() => { setAddVisible(!isAddVisible) }}>+ Add</button>
+            )}
         </div>
     );
 }
