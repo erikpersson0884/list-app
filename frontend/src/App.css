@@ -10,6 +10,9 @@
 }
 
 * {
+    height: max-content;
+    
+    padding: 0;
     margin: 0;
 }
 

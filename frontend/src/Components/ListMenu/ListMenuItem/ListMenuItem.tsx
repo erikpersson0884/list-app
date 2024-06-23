@@ -24,20 +24,31 @@ function ListMenuItem({ list, removeList }: ListMenuItemProps) {
         setManageListVisible(false);
     };
 
-    return (
-        <li className='listMenuItem'>
-            <Link to={`/lists/${list.name}`}>
-                <p className='listName'>{list.name} </p>
-                <p>{list.items.length} items</p>
+    const completedItems = list.items.filter(item => item.completed);
+    const completedPercentage = (completedItems.length / list.items.length) * 100;
 
-                <button onClick={handleManageList}>
-                    <img src="/images/icons/edit.svg" alt="Manage List" />
-                </button>
+    return (
+        <>
+            <Link className="listMenuItem" to={`/lists/${list.name}`}>
+                <div className='listInfo'>
+                    <p className='listName'>{list.name} </p>
+                    <p>{list.items.length} items</p>
+
+                    <button onClick={handleManageList}>
+                        <img src="/images/icons/edit.svg" alt="Manage List" />
+                    </button>
+                </div>
+
+                <div className='percentageDiv'>
+                    <div className='completedPercentageDiv' style={{ width: completedPercentage + "%" }}></div>
+                </div>
+
             </Link>
+
             {isManageListVisible && (
                 <ManageList list={list} onClose={handleCloseManageList} activeList={activeList} removeList={removeList} />
             )}
-        </li>
+        </>
     );
 }
 

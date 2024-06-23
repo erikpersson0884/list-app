@@ -21,13 +21,9 @@ export interface List {
 export interface Item {
     name: string;
     id: string;
+    completed: boolean;
 }
 
 export interface ShoppingListItem extends Item {
     amount: number;
-    completed: boolean;
-}
-
-export interface ShoppingList extends List {
-    completed: boolean;
 }

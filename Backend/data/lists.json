@@ -23,11 +23,13 @@
     "items": [
       {
         "name": "kanin",
-        "id": "1719137814722_nwga07"
+        "id": "1719137814722_nwga07",
+        "completed": false
       },
       {
         "name": "hare",
-        "id": "1719137815640_bz82ta"
+        "id": "1719137815640_bz82ta",
+        "completed": false
       }
     ]
   },

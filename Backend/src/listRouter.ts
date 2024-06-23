@@ -53,6 +53,7 @@ listRouter.post('/addItem', (req, res) => {
     const newItem: Item = { 
         name: itemName,
         id: createRandomId(),
+        completed: false
     };
 
     let lists: string = fs.readFileSync(listFile).toString(); // Convert Buffer to string
@@ -79,12 +80,12 @@ listRouter.post('/removeItem', (req, res) => {
         return;
     }
 
-    if (!activeList.items.find((listItem) => listItem.id === item.id)) {
+    if (!activeList.items.find((listItem: Item) => listItem.id === item.id)) {
         res.status(404).send("Item not found");
         return;
     }
 
-    activeList.items = activeList.items.filter((listItem) => listItem.id !== item.id);
+    activeList.items = activeList.items.filter((listItem: Item) => listItem.id !== item.id);
     
     fs.writeFileSync(listFile, JSON.stringify(parsedLists, null, 2));
     
