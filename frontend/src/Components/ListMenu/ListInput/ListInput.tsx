@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './ListInput.css';
 
 interface addListProps {
     onClose: () => void;

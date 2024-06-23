@@ -68,11 +68,10 @@ function List({ list }: ListProps) {
                         </button>
                     </li>
                 ))}
-
-                <li className='addItemButton'>
-                    <button onClick={() => { setAddVisible(!isAddVisible) }}>ADD ITEM</button>
-                </li>
             </ul>
+
+            <button className="noButtonFormatting addItemButton" onClick={() => { setAddVisible(!isAddVisible) }}>+ Add</button>
+
         </div>
     );
 }

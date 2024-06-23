@@ -1,3 +1,8 @@
+:root {
+    --contrastColor: #1b4121; /* Replace with your desired contrast color */
+
+}
+
 #root {
     width: 100%;
     height: max-content;
@@ -19,6 +24,12 @@ header {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+.noButtonFormatting {
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .hidden {

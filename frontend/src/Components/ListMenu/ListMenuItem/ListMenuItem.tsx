@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { List } from '../../types/types';
+import { List } from '../../../types/types';
 import { Link } from 'react-router-dom';
-import ManageList from '../ManageList/ManageList';
+import ManageList from '../../ManageList/ManageList';
 
 
 interface ListMenuItemProps {
@@ -18,8 +18,6 @@ function ListMenuItem({ list, removeList }: ListMenuItemProps) {
         event.preventDefault(); // Prevent navigation
         setActiveList(list);
         setManageListVisible(!isManageListVisible);
-
-        // console.log("Manage", activeList);
     };
 
     const handleCloseManageList = () => {

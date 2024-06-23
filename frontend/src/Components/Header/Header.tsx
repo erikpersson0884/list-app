@@ -18,11 +18,12 @@ const Header: React.FC = () => {
     const location = useLocation();
     const showBackButton = location.pathname.startsWith('/lists/');
 
-    let title;
+    let title: string;
     if (location.pathname === '/') {
         title = 'Lists';
     } else {
         title= stripLeftOfLastSlash(location.pathname);
+        title = title.replace(/%20/g, ' ');
     } 
 
     return (
@@ -37,9 +38,12 @@ const Header: React.FC = () => {
             
             <h1>{title}</h1>
 
-            <button className='invisible'>
-                <img src="/images/icons/back.svg" alt="Back icon" />
-            </button>
+            {showBackButton && (
+                <button className='invisible'>
+                    <img src="/images/icons/back.svg" alt="Back icon" />
+                </button>
+            )}
+
         </header>
     );
 };

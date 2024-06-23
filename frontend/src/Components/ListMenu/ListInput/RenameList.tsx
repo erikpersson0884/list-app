@@ -8,11 +8,11 @@ interface addListProps {
 };
 
 const AddList = ({onClose, onSave}: addListProps) => {
-        return (
-            <>
-                <ListInput onClose={onClose} onSave={onSave} saveText='Add List'/>
-            </>
-        );
+    return (
+        <>
+            <ListInput onClose={onClose} onSave={onSave} saveText='RenameList'/>
+        </>
+    );
 };
 
 export default AddList;

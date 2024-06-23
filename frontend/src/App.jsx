@@ -3,13 +3,9 @@ import { useEffect, useState } from 'react';
 
 import './App.css'
 
-
 import ListMenu from './Components/ListMenu/ListMenu'
 import List from './Components/List/List'
 import Header from './Components/Header/Header'
-
-import ManageList from './Components/ManageList/ManageList';
-
 
 function App() {
 
@@ -31,9 +27,9 @@ function App() {
 
                 {lists.map((list) => (
                     <Route
-                        key={list.name}
                         path={`/lists/${list.name}`}
                         element={<List list={list} />}
+                        key={list.name}
                     />
                 ))}
             </Routes>

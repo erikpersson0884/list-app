@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import ListMenuItem from './ListMenuItem';
-import { ListsProps, List } from '../../types/types';
-
-
-import './ListMenu.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import AddList from './AddList';
+
+import { List } from '../../types/types';
+import ListMenuItem from './ListMenuItem/ListMenuItem';
+import AddList from './ListInput/AddList';
+import RenameList from './ListInput/RenameList';
+import './ListMenu.css';
+
 
 
 
@@ -15,49 +15,47 @@ const ListMenu = () =>{
     const [lists, setLists] = useState<List[]>([]);
 
     useEffect(() => {
-        fetch(`/api/lists/getAllLists`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setLists(data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        updateLists();
     }, []); // Add an empty dependency array to useEffect to ensure it only runs once
 
 
+    const updateLists = () => {
+        fetch(`/api/lists/getAllLists`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setLists(data);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    };
 
 
     const removeList = (listId: string) => {
         const newLists = lists.filter((l) => l.id !== listId);
         axios.post(`/api/lists/removeList`, { listId: listId })
             .then(() => {
-                setLists(newLists);
+                updateLists();
             });
     }
 
-
-
     const [isAddVisible, setAddVisible] = useState(false);
-    const closeAddList = () => {
+    const saveAdd = () => {
+        updateLists();
         setAddVisible(false);
     }
 
-    const openAddList = () => {
-        setAddVisible(true);
+    const [isRenameVisible, setRenameVisible] = useState(false);
+    const saveRename = () => {
+        updateLists();
+        setRenameVisible(false);
     }
 
-    const handleAddList = (listName: String) => {
-        axios.post(`/api/lists/addList`, { listName: listName })
-            .then((response) => {
-                setLists(response.data);
-            });
-    }
 
     return (
         <ul className='listMenu'>
@@ -65,12 +63,16 @@ const ListMenu = () =>{
                 <ListMenuItem list={list} key={list.id} removeList={removeList} />
             ))}
 
-            <li className='addList' onClick={openAddList} key={"addList"}>
+            <li className='addList' onClick={() => {setAddVisible(true)}} key={"addList"}>
                 Add  List +
             </li>
 
             {isAddVisible && (
-                <AddList onClose={closeAddList} onSave={handleAddList} key={"AddListDiv"}/>
+                <AddList onClose={saveAdd} key={"AddListDiv"}/>
+            )}
+
+            {isRenameVisible && (
+                <RenameList onClose={saveRename} key={"RenameListDiv"}/>
             )}
         </ul>
     );
