@@ -44,6 +44,27 @@ function List({ list }: ListProps) {
             });
     }
 
+    const toggleCompleted = (item: Item) => {
+        console.log(item);
+        
+        axios.post('/api/lists/toggleCompleted', { item: item, listId: list.id })
+            .then((response) => {
+                if (response.status === 200) {
+                    const updatedItem = response.data;
+                    setItems(items.map((item) => {
+                        if (item.id === updatedItem.id) {
+                            return updatedItem;
+                        } else {
+                            return item;
+                        }
+                    }));
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
+
+
     return (
         <div>
             {isAddVisible && (
@@ -62,6 +83,10 @@ function List({ list }: ListProps) {
             <ul className="list">
                 {items.map((item, index) => (
                     <li key={index}>
+                        <button className='completeItemButton' onClick={() => {toggleCompleted(item)}}>
+                            <img src={item.completed ? "/images/icons/checked.svg" : "/images/icons/unchecked.svg"} alt="Complete List" />
+                        </button>
+
                         <p className='listItemName'>{item.name}</p>
                         <button className='removeItemButton' onClick={() => removeItem(item)}>
                             <img src="/images/icons/remove.svg" alt="Remove icon" />

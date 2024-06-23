@@ -92,6 +92,32 @@ listRouter.post('/removeItem', (req, res) => {
     res.status(200).send(`Item ${item.name}, removed from list ${activeList.name}`);
 });
 
+listRouter.post('/toggleCompleted', (req, res) => {
+    const item: Item = req.body.item;
+    const listId: string = req.body.listId;
+
+    let lists: string = fs.readFileSync(listFile).toString(); // Convert Buffer to string
+    let parsedLists: List[] = JSON.parse(lists);
+
+    const activeList = parsedLists.find((list) => list.id === listId);
+    if (!activeList) {
+        res.status(404).send("Item not found");
+        return;
+    }
+
+    const activeItem = activeList.items.find((listItem: Item) => listItem.id === item.id);
+    if (!activeItem) {
+        res.status(404).send("Item not found");
+        return;
+    }
+
+    activeItem.completed = !activeItem.completed;
+    
+    fs.writeFileSync(listFile, JSON.stringify(parsedLists, null, 2));
+    
+    res.status(200).send(activeItem);
+});
+
 
 
 

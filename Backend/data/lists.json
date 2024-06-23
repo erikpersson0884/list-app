@@ -7,12 +7,27 @@
         "name": "milk",
         "id": "2j3f9j3f9j",
         "quantity": 1,
-        "completed": false
+        "completed": true
       },
       {
         "name": "bread",
-        "id": "2j3f9j3f9j",
+        "id": "35fgsfd",
         "quantity": 1,
+        "completed": false
+      },
+      {
+        "name": "eggs",
+        "id": "1719148745388_g2yh2o",
+        "completed": true
+      },
+      {
+        "name": "potatoe",
+        "id": "1719148749924_8zwgma",
+        "completed": true
+      },
+      {
+        "name": "orange",
+        "id": "1719148751032_1ecil8",
         "completed": true
       }
     ]
@@ -24,7 +39,7 @@
       {
         "name": "kanin",
         "id": "1719137814722_nwga07",
-        "completed": false
+        "completed": true
       },
       {
         "name": "hare",
