@@ -3,6 +3,7 @@ import { ListProps, Item } from '../../types/types';
 import axios from 'axios';
 
 import './List.css';
+import Header from '../Header/Header';
 
 function List({ list }: ListProps) {
     const [items, setItems] = useState<Item[]>(list.items);
@@ -33,7 +34,7 @@ function List({ list }: ListProps) {
     }
 
     const removeItem = (itemToRemove: Item) => {
-        axios.post('/api/lists/removeItem', { item: itemToRemove, listId: list.id})
+        axios.post('/api/lists/removeItem', { item: itemToRemove, listId: list.id })
             .then((response) => {
                 if (response.status === 200) {
                     setItems(items.filter((item) => itemToRemove.id !== item.id));
@@ -61,35 +62,49 @@ function List({ list }: ListProps) {
             });
     }
 
-
     return (
         <div>
-            {isAddVisible && (
-                <form className='addForm' onSubmit={addItem}>
-                    <button className='closeButton noButtonFormatting' onClick={() => { setAddVisible(!isAddVisible) }}>
-                        <img src="/images/icons/back.svg" alt="Close icon" />
-                    </button>
+            <Header title={list.name} subHeader={
+                <>
+                    {isAddVisible && (
+                    <form className='addForm' onSubmit={addItem}>
+                        <button 
+                            className='closeButton noButtonFormatting' 
+                            type="button" 
+                            onClick={() => setAddVisible(!isAddVisible)}>
+                            <img src="/images/icons/back.svg" alt="Close icon" />
+                        </button>
 
-                    <input 
-                        type='text' 
-                        placeholder='Add item...' 
-                        value={itemName}
-                        onChange={handleInputChange}
-                        ref={inputRef} // Assign the ref to the input element
-                    />
-                    <button className="addItemButton" type="submit">Add</button>
-                </form>
+                        <input 
+                            type='text' 
+                            placeholder='Add item...' 
+                            value={itemName}
+                            onChange={handleInputChange}
+                            ref={inputRef} // Assign the ref to the input element
+                        />
+                        <button className="addItemButton" type="submit">Add</button>
+                    </form>
             )}
+                </>
+            }></Header>
+
+
 
             <ul className="list">
                 {items.map((item, index) => (
                     <li key={index}>
-                        <button className='completeItemButton noButtonFormatting' onClick={() => {toggleCompleted(item)}}>
+                        <button 
+                            className='completeItemButton noButtonFormatting' 
+                            type="button" 
+                            onClick={() => toggleCompleted(item)}>
                             <img src={item.completed ? "/images/icons/checked.svg" : "/images/icons/unchecked.svg"} alt="Complete List" />
                         </button>
 
                         <p className='listItemName'>{item.name}</p>
-                        <button className='removeItemButton noButtonFormatting' onClick={() => removeItem(item)}>
+                        <button 
+                            className='removeItemButton noButtonFormatting' 
+                            type="button" 
+                            onClick={() => removeItem(item)}>
                             <img src="/images/icons/remove.svg" alt="Remove icon" />
                         </button>
                     </li>
@@ -97,7 +112,11 @@ function List({ list }: ListProps) {
             </ul>
             
             {!isAddVisible && (
-                <button className="noButtonFormatting openAddItemButton" onClick={() => { setAddVisible(!isAddVisible) }}>+ Add</button>
+                <button 
+                    className="noButtonFormatting openAddItemButton" 
+                    type="button" 
+                    onClick={() => setAddVisible(!isAddVisible)}>+ Add
+                </button>
             )}
         </div>
     );

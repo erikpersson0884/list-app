@@ -1,6 +1,6 @@
 [
   {
-    "name": "shoppingList",
+    "name": "shopping list",
     "id": "29879fdos8fj",
     "items": [
       {
@@ -51,11 +51,43 @@
   {
     "id": "1719153209317",
     "name": "nice people",
-    "items": []
+    "items": [
+      {
+        "name": "jag",
+        "id": "1719155842740_ondi5lr",
+        "completed": false
+      },
+      {
+        "name": "mig ",
+        "id": "1719155843448_w832wi",
+        "completed": true
+      },
+      {
+        "name": "erik",
+        "id": "1719155844394_3vkuxa",
+        "completed": true
+      },
+      {
+        "name": "göken",
+        "id": "1719155845265_3alwwx",
+        "completed": false
+      }
+    ]
   },
   {
-    "id": "1719153216991",
-    "name": "6",
+    "id": "1719155210716",
+    "name": "Favoritländer",
+    "items": [
+      {
+        "name": "hej",
+        "id": "1719155411005_wc5fca",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "1719155213102",
+    "name": "blåa bilar",
     "items": []
   }
 ]
