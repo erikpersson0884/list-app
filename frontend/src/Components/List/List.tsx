@@ -6,7 +6,7 @@ import './List.css';
 
 function List({ list }: ListProps) {
     const [items, setItems] = useState<Item[]>(list.items);
-    const [isAddVisible, setAddVisible] = useState(true);
+    const [isAddVisible, setAddVisible] = useState(false);
     const [itemName, setItemName] = useState('');
     const inputRef = useRef<HTMLInputElement>(null); // Create a ref for the input element
 
@@ -63,7 +63,9 @@ function List({ list }: ListProps) {
                 {items.map((item, index) => (
                     <li key={index}>
                         <p className='listItemName'>{item.name}</p>
-                        <button className='removeItemButton' onClick={() => removeItem(item)}></button>
+                        <button className='removeItemButton' onClick={() => removeItem(item)}>
+                            <img src="/images/icons/remove.svg" alt="Remove icon" />
+                        </button>
                     </li>
                 ))}
 

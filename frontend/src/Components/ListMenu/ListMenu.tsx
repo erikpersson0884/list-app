@@ -70,7 +70,7 @@ const ListMenu = () =>{
             </li>
 
             {isAddVisible && (
-                <AddList onClose={closeAddList} handleAddList={handleAddList} key={"AddListDiv"}/>
+                <AddList onClose={closeAddList} onSave={handleAddList} key={"AddListDiv"}/>
             )}
         </ul>
     );
