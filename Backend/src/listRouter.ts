@@ -45,6 +45,21 @@ listRouter.post('/removeList', (req, res) => {
     res.send(parsedLists);
 });
 
+listRouter.post('/renameList', (req, res) => {
+    const listId = req.body.listId;
+    const newName = req.body.newName;
+
+    let lists: string = fs.readFileSync(listFile).toString(); // Convert Buffer to string
+    let parsedLists: List[] = JSON.parse(lists);
+
+    let listIndex = parsedLists.findIndex((list) => list.id === listId);
+    parsedLists[listIndex].name = newName;
+
+    fs.writeFileSync(listFile, JSON.stringify(parsedLists, null, 2));
+    
+    res.send(parsedLists);
+});
+
 
 listRouter.post('/addItem', (req, res) => {
     const itemName: string = req.body.itemName;

@@ -8,8 +8,6 @@ interface addListProps {
 };
 
 const AddList = ({onClose}: addListProps) => {
-
-
     const handleAddList = (listName: String) => {
         axios.post(`/api/lists/addList`, { listName: listName })
             .then((response) => {

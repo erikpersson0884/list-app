@@ -1,23 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ListProps, List } from '../../types/types';
 import './ManageList.css';
 import axios from 'axios';
+import RenameList from '../ListMenu/ListInput/RenameList';
 
 interface ManageListProps {
-    list: List;
-    onClose: () => void;
     activeList: List | null;
-    removeList: React.Dispatch<React.SetStateAction<List[]>>;
+    onClose: () => void;
+    openRenameList: () => void;
 }
 
-const ManageList = ({list, onClose, activeList, removeList}: ManageListProps) => {
-    const renameList = () => {
-    };
+const ManageList = ({ activeList, onClose, openRenameList }: ManageListProps) => {
+
+
+
+    const removeList = () => { // is called when a user clicks on the Delete option button
+        if (!activeList) return;
+
+        axios.post(`/api/lists/removeList`, { listId: activeList.id })
+            .then(() => {
+                onClose();
+            });
+    }
 
     const options = [
-        { name: 'Rename', icon: '/images/icons/edit.svg', action: renameList },
-        { name: 'Delete', icon: '/images/icons/remove.svg', action: () => {removeList(activeList.id);}
-        },
+        { name: 'Rename', icon: '/images/icons/edit.svg', action: openRenameList },
+        { name: 'Delete', icon: '/images/icons/remove.svg', action: removeList }
+        
     ];
 
 
@@ -37,6 +46,9 @@ const ManageList = ({list, onClose, activeList, removeList}: ManageListProps) =>
                     </li>
                 ))}
             </ul>
+
+
+
         </div>
     );
 };

@@ -7,6 +7,7 @@ import ListMenuItem from './ListMenuItem/ListMenuItem';
 import AddList from './ListInput/AddList';
 import RenameList from './ListInput/RenameList';
 import './ListMenu.css';
+import ManageList from '../ManageList/ManageList';
 
 
 
@@ -35,45 +36,53 @@ const ListMenu = () =>{
         });
     };
 
-
-    const removeList = (listId: string) => {
-        const newLists = lists.filter((l) => l.id !== listId);
-        axios.post(`/api/lists/removeList`, { listId: listId })
-            .then(() => {
-                updateLists();
-            });
-    }
-
     const [isAddVisible, setAddVisible] = useState(false);
     const saveAdd = () => {
         updateLists();
         setAddVisible(false);
     }
 
+ 
+
+    const [isManageListVisible, setManageListVisible] = useState(false);
+    const [activeList, setActiveList] = useState<List | null>(null);
     const [isRenameVisible, setRenameVisible] = useState(false);
-    const saveRename = () => {
-        updateLists();
-        setRenameVisible(false);
-    }
+    const openRenameList = () => { // is called when a user clicks on the Rename option
+    };
 
 
     return (
         <ul className='listMenu'>
             {lists.map((list: any) => (
-                <ListMenuItem list={list} key={list.id} removeList={removeList} />
+                <ListMenuItem list={list} openManageList={() => {
+                    setManageListVisible(true);
+                    setActiveList(list);
+                }} key={list.id} />
             ))}
 
             <li className='addList' onClick={() => {setAddVisible(true)}} key={"addList"}>
                 Add  List +
             </li>
 
+            {isManageListVisible && (
+                <ManageList activeList={activeList} onClose={() => {
+                    setManageListVisible(false);
+                    setActiveList(null);
+                    updateLists();
+                }} openRenameList={() => {
+                    setRenameVisible(true);
+                    setManageListVisible(false);
+                }}  />
+            )}
+
             {isAddVisible && (
                 <AddList onClose={saveAdd} key={"AddListDiv"}/>
             )}
 
             {isRenameVisible && (
-                <RenameList onClose={saveRename} key={"RenameListDiv"}/>
+                <RenameList onClose={() => {setRenameVisible(false); updateLists;} } activeList={activeList} key={"RenameListDiv"}/>
             )}
+
         </ul>
     );
 };
