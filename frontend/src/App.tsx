@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import './App.css'
 
 import ListMenu from './Components/ListMenu/ListMenu'
-import RenameList from './Components/ListMenu/ListInput/RenameList';
+import RenameList from './Components/ListInput/RenameList';
 
 import ManageList from './Components/ManageList/ManageList';
-import AddList from './Components/ListMenu/ListInput/AddList';
+import AddList from './Components/ListInput/AddList';
 import List from './Components/List/List';
 
 import { List as ListInterface} from './types/types';
@@ -64,8 +64,11 @@ const  App = () => {
                             element={
                                 <List 
                                     list={list} 
-                                    setManageListVisible={setManageListVisible} 
-                                    setActiveList={setActiveList}
+                                    toggleManageListVisible={() => {
+                                        setActiveList(list);
+                                        setManageListVisible(!isManageListVisible);
+                                    
+                                    }}
                                 />
                             }
                             key={list.name}

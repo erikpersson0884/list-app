@@ -7,11 +7,11 @@ import Header from '../Header/Header';
 
 interface ListProps {
     list: ListInterface;
-    setManageListVisible: (visible: boolean) => void;
-    setActiveList: (list: ListInterface) => void;
+    toggleManageListVisible: () => void;
 }
 
-function List({ list, setManageListVisible, setActiveList }: ListProps) {
+function List({ list, toggleManageListVisible }: ListProps) {
+
     const [items, setItems] = useState<Item[]>(list.items);
     const [isAddVisible, setAddVisible] = useState(false);
     const [itemName, setItemName] = useState('');
@@ -74,10 +74,10 @@ function List({ list, setManageListVisible, setActiveList }: ListProps) {
                 title={list.name}
                 openSettings={
                     () => {
-                        setActiveList(list);
-                        setManageListVisible(true);
+                        toggleManageListVisible();
                     }
                 } 
+                className='listHeader'
             />
                     
 

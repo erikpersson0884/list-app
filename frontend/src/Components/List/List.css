@@ -47,7 +47,7 @@
 
     font-size: 1.5rem;
 
-    position: absolute;
+    position: fixed;
     right: 2rem;
     bottom: 2rem;
 
@@ -81,7 +81,7 @@
     padding: .4rem;
     border-radius: 1rem;
     border: none;
-    outline: #fff solid .1rem;
+    outline: #000 solid .1rem;
 }
 
 .addForm .addItemButton {

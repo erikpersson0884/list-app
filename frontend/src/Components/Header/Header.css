@@ -2,26 +2,32 @@ header {
     background: #bbb;
     color: #000;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    box-sizing: border-box;
     width: 100%;
     height: 8rem;
-    padding-inline: 2rem;
 }
 
-header button {
-    width: min-content;
-    height: min-content;
+.listHeader {
+    justify-content: space-between;
+    
+    box-sizing: border-box;
+    padding-inline: 2rem;
 }
 
 header h1 {
     text-transform: capitalize;
+    text-align: center;
     white-space: nowrap;
+    font-size: 2.5rem;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    width: 60%;
+    height: min-content;
+}
+
+header button {
     width: min-content;
     height: min-content;
 }
