@@ -7,8 +7,6 @@ export interface ListProps {
 }
 
 export interface Lists {
-    name: string;
-    id: string;
     items: List[];
 }
 

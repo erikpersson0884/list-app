@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ListProps, List } from '../../types/types';
+import { List } from '../../types/types';
 import './ManageList.css';
 import axios from 'axios';
-import RenameList from '../ListMenu/ListInput/RenameList';
 
 interface ManageListProps {
     activeList: List | null;

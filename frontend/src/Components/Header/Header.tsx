@@ -5,7 +5,7 @@ import './Header.css';
 
 
 interface HeaderProps {
-    title: string;
+    title: any;
     subHeader: ReactNode;
 }
 

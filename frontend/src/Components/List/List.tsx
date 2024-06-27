@@ -1,11 +1,16 @@
 import React, { useState, useRef } from 'react';
-import { ListProps, Item } from '../../types/types';
+import { List as ListInterface, Item } from '../../types/types';
 import axios from 'axios';
 
 import './List.css';
 import Header from '../Header/Header';
 
-function List({ list }: ListProps) {
+interface ListProps {
+    list: ListInterface;
+    setManageListVisible: (visible: boolean) => void;
+}
+
+function List({ list, setManageListVisible }: ListProps) {
     const [items, setItems] = useState<Item[]>(list.items);
     const [isAddVisible, setAddVisible] = useState(false);
     const [itemName, setItemName] = useState('');
@@ -64,7 +69,11 @@ function List({ list }: ListProps) {
 
     return (
         <div>
-            <Header title={list.name} subHeader={
+            <Header title={
+                <button onClick={
+                () => setManageListVisible(list)
+                }>Manage</button>
+            } subHeader={
                 <>
                     {isAddVisible && (
                         <form className='addForm' onSubmit={addItem}>
