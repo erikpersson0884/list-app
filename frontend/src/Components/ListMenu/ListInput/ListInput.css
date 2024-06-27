@@ -35,9 +35,10 @@
 
 .listInputDiv input {
     background: inherit;
-    color: #e9e50b;
+    color: #fff;
 
     font-size: 2rem;
+    font-style: italic;
 
     border: none;
     outline: #00a52c 1px solid;

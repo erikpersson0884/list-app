@@ -3,7 +3,7 @@
 .manageList {
     background: #3f3f3f;
 
-    position: absolute;
+    position: fixed;
     bottom: 0;
 
     width: 100%;

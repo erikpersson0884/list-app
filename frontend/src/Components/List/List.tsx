@@ -67,54 +67,62 @@ function List({ list }: ListProps) {
             <Header title={list.name} subHeader={
                 <>
                     {isAddVisible && (
-                    <form className='addForm' onSubmit={addItem}>
-                        <button 
-                            className='closeButton noButtonFormatting' 
-                            type="button" 
-                            onClick={() => setAddVisible(!isAddVisible)}>
-                            <img src="/images/icons/back.svg" alt="Close icon" />
-                        </button>
+                        <form className='addForm' onSubmit={addItem}>
+                            <button
+                                className='closeButton noButtonFormatting'
+                                type="button"
+                                onClick={() => setAddVisible(!isAddVisible)}>
+                                <img src="/images/icons/back.svg" alt="Close icon" />
+                            </button>
 
-                        <input 
-                            type='text' 
-                            placeholder='Add item...' 
-                            value={itemName}
-                            onChange={handleInputChange}
-                            ref={inputRef} // Assign the ref to the input element
-                        />
-                        <button className="addItemButton" type="submit">Add</button>
-                    </form>
-            )}
+                            <input
+                                type='text'
+                                placeholder='Add item...'
+                                value={itemName}
+                                onChange={handleInputChange}
+                                ref={inputRef} // Assign the ref to the input element
+                            />
+                            <button className="addItemButton" type="submit">Add</button>
+                        </form>
+                    )}
                 </>
             }></Header>
 
-
-
             <ul className="list">
-                {items.map((item, index) => (
-                    <li key={index}>
-                        <button 
-                            className='completeItemButton noButtonFormatting' 
-                            type="button" 
-                            onClick={() => toggleCompleted(item)}>
-                            <img src={item.completed ? "/images/icons/checked.svg" : "/images/icons/unchecked.svg"} alt="Complete List" />
-                        </button>
+                {items
+                    .sort((a, b) => {
+                        if (a.completed && !b.completed) {
+                            return 1;
+                        } else if (!a.completed && b.completed) {
+                            return -1;
+                        } else {
+                            return a.name.localeCompare(b.name);
+                        }
+                    })
+                    .map((item, index) => (
+                        <li className={item.completed ? 'completedItem' : ''} key={index}>
+                            <button
+                                className='completeItemButton noButtonFormatting'
+                                type="button"
+                                onClick={() => toggleCompleted(item)}>
+                                <img src={item.completed ? "/images/icons/checked.svg" : "/images/icons/unchecked.svg"} alt="Complete List" />
+                            </button>
 
-                        <p className='listItemName'>{item.name}</p>
-                        <button 
-                            className='removeItemButton noButtonFormatting' 
-                            type="button" 
-                            onClick={() => removeItem(item)}>
-                            <img src="/images/icons/remove.svg" alt="Remove icon" />
-                        </button>
-                    </li>
-                ))}
+                            <p className='listItemName'>{item.name}</p>
+                            <button
+                                className='removeItemButton noButtonFormatting'
+                                type="button"
+                                onClick={() => removeItem(item)}>
+                                <img src="/images/icons/remove.svg" alt="Remove icon" />
+                            </button>
+                        </li>
+                    ))}
             </ul>
-            
+
             {!isAddVisible && (
-                <button 
-                    className="noButtonFormatting openAddItemButton" 
-                    type="button" 
+                <button
+                    className="noButtonFormatting openAddItemButton"
+                    type="button"
                     onClick={() => setAddVisible(!isAddVisible)}>+ Add
                 </button>
             )}

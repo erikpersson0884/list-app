@@ -22,7 +22,10 @@
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
+}
 
+.list .completedItem {
+    background: #15341a;
 }
 
 .listItemName {
@@ -33,10 +36,14 @@
 
 
 
+
+
  /* Add funcitonality */
 
  .openAddItemButton {
     background: var(--contrastColor);
+
+    box-shadow: 0 0 100rem rgb(0, 0, 0);
 
     font-size: 1.5rem;
 
