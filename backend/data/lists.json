@@ -116,7 +116,7 @@
   },
   {
     "id": "1719155210716",
-    "name": "mina favoritländer",
+    "name": "test",
     "items": [
       {
         "name": "Yamaica",
@@ -136,28 +136,28 @@
       {
         "name": "Grekland",
         "id": "1719432896408_bx9tgu",
-        "completed": false
+        "completed": true
       },
       {
         "name": "Norge",
         "id": "1719432901624_s7noj",
-        "completed": false
+        "completed": true
       },
       {
         "name": "Island",
         "id": "1719432903566_mpu06e",
+        "completed": true
+      },
+      {
+        "name": "africa",
+        "id": "1719497230750_l7st4t",
         "completed": false
       }
     ]
   },
   {
-    "id": "1719494644097",
-    "name": "dålig lista",
-    "items": []
-  },
-  {
-    "id": "1719494734593",
-    "name": "test",
+    "id": "1719495813995",
+    "name": "Fina blåa svampar som jag gillar",
     "items": []
   }
 ]
