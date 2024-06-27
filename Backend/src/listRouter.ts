@@ -6,6 +6,9 @@ const listFile = './data/lists.json';
 
 const listRouter = Router();
 
+function print(msg: string): void {
+    console.log('\x1b[31m%s\x1b[0m', msg);
+}
 
 function createRandomId () {
     const timestamp = Date.now();
@@ -52,8 +55,14 @@ listRouter.post('/renameList', (req, res) => {
     let lists: string = fs.readFileSync(listFile).toString(); // Convert Buffer to string
     let parsedLists: List[] = JSON.parse(lists);
 
-    let listIndex = parsedLists.findIndex((list) => list.id === listId);
-    parsedLists[listIndex].name = newName;
+    let activeList = parsedLists.find((list) => list.id === listId);
+
+    if (!activeList) {
+        res.status(404).send("List not found");
+        return;
+    }
+
+    activeList.name = newName;
 
     fs.writeFileSync(listFile, JSON.stringify(parsedLists, null, 2));
     

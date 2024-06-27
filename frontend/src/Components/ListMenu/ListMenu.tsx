@@ -43,18 +43,16 @@ const ListMenu = () =>{
         setAddVisible(false);
     }
 
- 
+    const [isRenameVisible, setRenameVisible] = useState(false);
+
 
     const [isManageListVisible, setManageListVisible] = useState(false);
     const [activeList, setActiveList] = useState<List | null>(null);
-    const [isRenameVisible, setRenameVisible] = useState(false);
-    const openRenameList = () => { // is called when a user clicks on the Rename option
-    };
 
 
     return (
         <>
-            <Header title='Lists' />
+            <Header title='Lists' subHeader={null} />
             <ul className='listMenu'>
                 {lists.map((list: any) => (
                     <ListMenuItem list={list} openManageList={() => {
@@ -83,7 +81,7 @@ const ListMenu = () =>{
                 )}
 
                 {isRenameVisible && (
-                    <RenameList onClose={() => {setRenameVisible(false); updateLists;} } activeList={activeList} key={"RenameListDiv"}/>
+                    <RenameList onClose={() => {setRenameVisible(false); updateLists();} } activeList={activeList} key={"RenameListDiv"}/>
                 )}
 
             </ul>

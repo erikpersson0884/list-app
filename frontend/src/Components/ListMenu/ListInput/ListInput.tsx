@@ -25,7 +25,6 @@ const ListInput = ({onClose, onSave, saveText}: addListProps) => {
                 <button onClick={onClose}>Cancel</button>
                 <button onClick={handleSave}>{saveText}</button>
             </div>
-
         </div>
     );
 };

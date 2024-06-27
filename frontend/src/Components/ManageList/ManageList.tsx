@@ -11,9 +11,6 @@ interface ManageListProps {
 }
 
 const ManageList = ({ activeList, onClose, openRenameList }: ManageListProps) => {
-
-
-
     const removeList = () => { // is called when a user clicks on the Delete option button
         if (!activeList) return;
 
@@ -23,13 +20,12 @@ const ManageList = ({ activeList, onClose, openRenameList }: ManageListProps) =>
             });
     }
 
+
     const options = [
         { name: 'Rename', icon: '/images/icons/edit.svg', action: openRenameList },
         { name: 'Delete', icon: '/images/icons/remove.svg', action: removeList }
-        
     ];
-
-
+    
     return (
         <div className='manageList'>
             <button className='closeButton' onClick={onClose}>
@@ -46,9 +42,6 @@ const ManageList = ({ activeList, onClose, openRenameList }: ManageListProps) =>
                     </li>
                 ))}
             </ul>
-
-
-
         </div>
     );
 };
