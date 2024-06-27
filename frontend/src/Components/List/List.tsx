@@ -8,9 +8,10 @@ import Header from '../Header/Header';
 interface ListProps {
     list: ListInterface;
     setManageListVisible: (visible: boolean) => void;
+    setActiveList: (list: ListInterface) => void;
 }
 
-function List({ list, setManageListVisible }: ListProps) {
+function List({ list, setManageListVisible, setActiveList }: ListProps) {
     const [items, setItems] = useState<Item[]>(list.items);
     const [isAddVisible, setAddVisible] = useState(false);
     const [itemName, setItemName] = useState('');
@@ -69,33 +70,37 @@ function List({ list, setManageListVisible }: ListProps) {
 
     return (
         <div>
-            <Header title={
-                <button onClick={
-                () => setManageListVisible(list)
-                }>Manage</button>
-            } subHeader={
-                <>
-                    {isAddVisible && (
-                        <form className='addForm' onSubmit={addItem}>
-                            <button
-                                className='closeButton noButtonFormatting'
-                                type="button"
-                                onClick={() => setAddVisible(!isAddVisible)}>
-                                <img src="/images/icons/back.svg" alt="Close icon" />
-                            </button>
+            <Header
+                title={list.name}
+                openSettings={
+                    () => {
+                        setActiveList(list);
+                        setManageListVisible(true);
+                    }
+                } 
+            />
+                    
 
-                            <input
-                                type='text'
-                                placeholder='Add item...'
-                                value={itemName}
-                                onChange={handleInputChange}
-                                ref={inputRef} // Assign the ref to the input element
-                            />
-                            <button className="addItemButton" type="submit">Add</button>
-                        </form>
-                    )}
-                </>
-            }></Header>
+            {isAddVisible && (
+                    <form className='addForm' onSubmit={addItem}>
+                        <button
+                            className='closeButton noButtonFormatting'
+                            type="button"
+                            onClick={() => setAddVisible(!isAddVisible)}>
+                            <img src="/images/icons/back.svg" alt="Close icon" />
+                        </button>
+
+                        <input
+                            type='text'
+                            placeholder='Add item...'
+                            value={itemName}
+                            onChange={handleInputChange}
+                            ref={inputRef} // Assign the ref to the input element
+                        />
+                        <button className="addItemButton" type="submit">Add</button>
+                    </form>
+                )}
+
 
             <ul className="list">
                 {items

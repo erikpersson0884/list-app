@@ -6,36 +6,31 @@ import './Header.css';
 
 interface HeaderProps {
     title: any;
-    subHeader: ReactNode;
+    openSettings: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({title, subHeader}) => {
+const Header: React.FC<HeaderProps> = ({title, openSettings}) => {
     const location = useLocation();
     const showBackButton = location.pathname.startsWith('/lists/');
+    const showSettingsButton = openSettings !== undefined;
 
     return (
         <header >
-            <div className='pageHeader'>
-                {showBackButton && (
-                    <button>
-                        <Link to="/">
-                            <img src="/images/icons/back.svg" alt="Back icon" />
-                        </Link>
-                    </button>
-                )}
-                
-                <h1>{title}</h1>
-
-                {showBackButton && (
-                    <button className='invisible'>
+            {showBackButton && (
+                <button className=' noButtonFormatting'>
+                    <Link to="/">
                         <img src="/images/icons/back.svg" alt="Back icon" />
-                    </button>
-                )}
-            </div>
+                    </Link>
+                </button>
+            )}
+            
+            <h1>{title}</h1>
 
-
-            {subHeader}
-
+            {showSettingsButton && (
+                <button className=' noButtonFormatting' onClick={openSettings}>
+                    <img className="openSettingsButton" src="/images/icons/settings.svg" alt="Settings icon" />
+                </button>
+            )}
         </header>
     );
 };

@@ -50,16 +50,24 @@ const  App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={
-                        <ListMenu lists={lists} 
-                        setActiveList={setActiveList} 
-                        setManageListVisible={setManageListVisible} 
-                        setAddListVisible={setAddListVisible} />
+                        <ListMenu 
+                            lists={lists} 
+                            setActiveList={setActiveList} 
+                            setManageListVisible={setManageListVisible} 
+                            setAddListVisible={setAddListVisible} 
+                        />
                     } />
 
                     {lists.map((list: ListInterface) => (
                         <Route
                             path={`/lists/${list.name}`}
-                            element={<List list={list} setManageListVisible={setManageListVisible} />}
+                            element={
+                                <List 
+                                    list={list} 
+                                    setManageListVisible={setManageListVisible} 
+                                    setActiveList={setActiveList}
+                                />
+                            }
                             key={list.name}
                         />
                     ))}
